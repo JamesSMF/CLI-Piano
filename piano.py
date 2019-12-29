@@ -3,6 +3,7 @@ import pyaudio
 import wave
 import threading
 import time
+import sys
 
 tone = {49:   "C3",
         50:   "D3",
@@ -19,6 +20,8 @@ tone = {49:   "C3",
         104:  "A4",
         106:  "B4"}
 
+# This function is important
+# It plays a wav file
 def play(path):
    CHUNK    = 1024
    wf       = wave.open(path, 'rb')    # rb = read binary
@@ -46,6 +49,15 @@ while True:
       if event.type == pygame.QUIT:
          pygame.quit()
       elif event.type == pygame.KEYDOWN:
-         print(tone[event.key])
-         path = "/Users/liguangyao/CLI-Piano/" + tone[event.key] + ".wav"
-         threading.Thread(target=play, args=(path,)).start()
+         if event.key == 27:
+            print("Exiting the program, please wait...")
+            sys.exit()
+         try:
+            print(tone[event.key])
+            path = "/Users/liguangyao/CLI-Piano/" + tone[event.key] + ".wav"
+
+            # Use multi-threading so that users can play several sounds simultaneously
+            threading.Thread(target=play, args=(path,)).start()
+         except:
+            print("Invalid key pressed!")
+            continue
