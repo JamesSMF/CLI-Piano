@@ -51,6 +51,7 @@ while True:
       elif event.type == pygame.KEYDOWN:
          if event.key == 27:
             print("Exiting the program, please wait...")
+            pygame.quit()
             sys.exit()
          try:
             print(tone[event.key])
