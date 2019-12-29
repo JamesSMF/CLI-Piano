@@ -4,20 +4,20 @@ import wave
 import threading
 import time
 
-tone = {49:"C3",
-        50:"D3",
-        51:"E3",
-        52:"F3",
-        53:"G3",
-        54:"A3",
-        55:"B3",
-        97:"C4",
-        115:"D4",
-        100:"E4",
-        102:"F4",
-        103:"G4",
-        104:"A4",
-        106:"B4"}
+tone = {49:   "C3",
+        50:   "D3",
+        51:   "E3",
+        52:   "F3",
+        53:   "G3",
+        54:   "A3",
+        55:   "B3",
+        97:   "C4",
+        115:  "D4",
+        100:  "E4",
+        102:  "F4",
+        103:  "G4",
+        104:  "A4",
+        106:  "B4"}
 
 def play(path):
    CHUNK    = 1024
@@ -47,5 +47,5 @@ while True:
          pygame.quit()
       elif event.type == pygame.KEYDOWN:
          print(tone[event.key])
-         path = "/Users/liguangyao/github/python/python3/piano/" + tone[event.key] + ".wav"
+         path = "/Users/liguangyao/CLI-Piano/" + tone[event.key] + ".wav"
          threading.Thread(target=play, args=(path,)).start()
