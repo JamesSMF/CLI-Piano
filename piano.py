@@ -5,20 +5,27 @@ import threading
 import time
 import sys
 
-tone = {49:   "C3",
-        50:   "D3",
-        51:   "E3",
-        52:   "F3",
-        53:   "G3",
-        54:   "A3",
-        55:   "B3",
-        97:   "C4",
-        115:  "D4",
-        100:  "E4",
-        102:  "F4",
-        103:  "G4",
-        104:  "A4",
-        106:  "B4"}
+tone = {49:   "piano_C3",
+        50:   "piano_D3",
+        51:   "piano_E3",
+        52:   "piano_F3",
+        53:   "piano_G3",
+        54:   "piano_A3",
+        55:   "piano_B3",
+        97:   "human_C3",
+        115:  "human_D3",
+        100:  "human_E3",
+        102:  "human_F3",
+        103:  "human_G3",
+        104:  "human_A3",
+        106:  "human_B3",
+        113:  "human_C2",
+        119:  "human_D2",
+        101:  "human_E2",
+        114:  "human_F2",
+        116:  "human_G2",
+        121:  "human_A2",
+        117:  "human_B2"}
 
 # This function is important
 # It plays a wav file
@@ -55,10 +62,10 @@ while True:
             sys.exit()
          try:
             print(tone[event.key])
-            path = "/Users/liguangyao/CLI-Piano/" + tone[event.key] + ".wav"
+            path = "/Users/liguangyao/CLI-Piano/SOUND_SOURCE/" + tone[event.key] + ".wav"
 
             # Use multi-threading so that users can play several sounds simultaneously
             threading.Thread(target=play, args=(path,)).start()
          except:
-            print("Invalid key pressed!")
+            print("Invalid key pressed! (Error #: " + str(event.key) + " )")
             continue
