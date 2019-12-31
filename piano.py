@@ -25,7 +25,17 @@ tone = {49:   "piano_C3",
         114:  "human_F2",
         116:  "human_G2",
         121:  "human_A2",
-        117:  "human_B2"}
+        117:  "human_B2",
+        122:  "human_bass",
+        120:  "human_kick_drum",
+        99:   "human_kick_drum2",
+        118:  "human_water_drop",
+        98:   "human_rimshot",
+        110:  "human_in",
+        109:  "human_hi_hats",
+        44:   "human_hi_hats2",
+        32:   "human_scratch",
+        46:   "human_echo"}
 
 # This function is important
 # It plays a wav file
