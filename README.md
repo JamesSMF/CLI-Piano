@@ -17,3 +17,4 @@ Now you can run `python3 piano.py` and enjoy.
 + QWERTYU: Human voice C3 to B3
 + ASDFGHJ: Human voice C4 to B4
 + ZXCVBNM<> and space: Bbox
++ esc: quit
