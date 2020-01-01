@@ -6,7 +6,7 @@ decided to record my own voice and made it into a beat-box machine.
 
 ## How to use it
 1. clone the repo
-2. Now you can run `python3 piano.py` and enjoy.
+2. Now you can run `./piano.py` and enjoy.
 <br>
 
 ## Keys
@@ -27,4 +27,4 @@ Now run `player.py`. You should be able to play the music you just recorded by
 doing so.
 
 **Note:** Please do not exit the program by pressing `ctrl + C`. This might cause some
-exceptions when running `player.py`
+exceptions when running `./player.py`
