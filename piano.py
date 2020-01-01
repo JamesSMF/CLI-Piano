@@ -40,24 +40,23 @@ tone = {49:   "piano_C3",
 # This function is important
 # It plays a wav file
 def play(path):
-   CHUNK    = 1024
    wf       = wave.open(path, 'rb')    # rb = read binary
-   data     = wf.readframes(CHUNK)
+   CHUNK    = 1024
    p        = pyaudio.PyAudio()
-   FORMAT   = p.get_format_from_width(wf.getsampwidth())
-   CHANNELS = wf.getnchannels()
+   data     = wf.readframes(CHUNK)
    RATE     = wf.getframerate()
+   CHANNELS = wf.getnchannels()
+   FORMAT   = p.get_format_from_width(wf.getsampwidth())
 
    stream = p.open(format            = FORMAT,
-                   channels          = CHANNELS,
-                   rate              = RATE,
                    frames_per_buffer = CHUNK,
+                   rate              = RATE,
+                   channels          = CHANNELS,
                    output            = True)
 
    while len(data)>0:
       stream.write(data)
       data=wf.readframes(CHUNK)
-
 
 pygame.init()
 while True:
@@ -66,16 +65,49 @@ while True:
       if event.type == pygame.QUIT:
          pygame.quit()
       elif event.type == pygame.KEYDOWN:
-         if event.key == 27:
+         if event.key == 27:    # <esc>
             print("Exiting the program, please wait...")
             pygame.quit()
             sys.exit()
-         try:
-            print(tone[event.key])
-            path = "/Users/liguangyao/CLI-Piano/SOUND_SOURCE/" + tone[event.key] + ".wav"
+         elif event.key == 9:   # <tab>: recording mode
+            f          = open("record.txt", "w")
+            loop_count = 0
+            start      = time.time()
+            print("Now in recording mode")
+            invalid_key = False
+            while True:
+               interval = 0
+               for rec_key in pygame.event.get():   # get user input key
+                  if rec_key.type == pygame.KEYDOWN:
+                     if rec_key.key == 27:
+                        f.write(" 0")
+                        f.close()
+                        print("Exiting the program, please wait...")
+                        pygame.quit()
+                        sys.exit()
+                     else:
+                        try:
+                           tone[rec_key.key]       # check if the key pressed is valid
+                           loop_count += 1
+                           if loop_count > 1:         # not the first iteration
+                              interval = time.time() - start
+                              f.write(" " + str(interval) + "\n")
 
-            # Use multi-threading so that users can play several sounds simultaneously
-            threading.Thread(target=play, args=(path,)).start()
-         except:
-            print("Invalid key pressed! (Error #: " + str(event.key) + " )")
-            continue
+                           start = time.time()
+                           print(tone[rec_key.key])
+                           path = "/Users/liguangyao/CLI-Piano/SOUND_SOURCE/" + tone[rec_key.key] + ".wav"
+                           # Use multi-threading so that users can play several sounds simultaneously
+                           threading.Thread(target=play, args=(path,)).start()
+                           f.write(tone[rec_key.key])   # write down the key
+                        except:
+                           print("invalid key pressed! (Error #: " + str(rec_key.key) + ")")
+         else:
+            try:
+               print(tone[event.key])
+               path = "/Users/liguangyao/CLI-Piano/SOUND_SOURCE/" + tone[event.key] + ".wav"
+
+               # Use multi-threading so that users can play several sounds simultaneously
+               threading.Thread(target=play, args=(path,)).start()
+            except:
+               print("Invalid key pressed! (Error #: " + str(event.key) + ")")
+               continue

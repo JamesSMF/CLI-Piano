@@ -1,2 +1,5 @@
 用event.key来记录按下的key，然后根据前后key.down的时间差插入sleep指令
 写一个helper program（类似于音乐播放器）播放记录下来的file
+
+写入格式如下：
+音名 持续时间
