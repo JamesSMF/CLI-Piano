@@ -28,3 +28,6 @@ Press `<esc>` to exit the program.
 
 Now run `player.py`. You should be able to play the music you just recorded by
 doing so.
+
+**Note: Please do not exit the program by pressing `ctrl + C`. This might cause some
+exceptions when running `player.py`
