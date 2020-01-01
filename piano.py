@@ -4,6 +4,7 @@ import wave
 import threading
 import time
 import sys
+import os
 
 tone = {49:   "piano_C3",
         50:   "piano_D3",
@@ -59,6 +60,7 @@ def play(path):
       data=wf.readframes(CHUNK)
 
 pygame.init()
+PATH = os.getcwd() + "/SOUND_SOURCE/"
 while True:
    time.sleep(0.05)
    for event in pygame.event.get():
@@ -95,19 +97,19 @@ while True:
 
                            start = time.time()
                            print(tone[rec_key.key])
-                           path = "/Users/liguangyao/CLI-Piano/SOUND_SOURCE/" + tone[rec_key.key] + ".wav"
                            # Use multi-threading so that users can play several sounds simultaneously
-                           threading.Thread(target=play, args=(path,)).start()
+                           curr_PATH = PATH + tone[rec_key.key] + ".wav"
+                           threading.Thread(target=play, args=(curr_PATH,)).start()
                            f.write(tone[rec_key.key])   # write down the key
                         except:
                            print("invalid key pressed! (Error #: " + str(rec_key.key) + ")")
          else:
             try:
                print(tone[event.key])
-               path = "/Users/liguangyao/CLI-Piano/SOUND_SOURCE/" + tone[event.key] + ".wav"
 
                # Use multi-threading so that users can play several sounds simultaneously
-               threading.Thread(target=play, args=(path,)).start()
+               curr_PATH = PATH + tone[event.key] + ".wav"
+               threading.Thread(target=play, args=(curr_PATH,)).start()
             except:
                print("Invalid key pressed! (Error #: " + str(event.key) + ")")
                continue

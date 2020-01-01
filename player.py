@@ -2,6 +2,7 @@ import pyaudio
 import wave
 import threading
 import time
+import os
 
 def play(path):
    CHUNK    = 1024
@@ -38,7 +39,7 @@ while len(COMMAND)>0:
    time.sleep(float(T))
    sound = COMMAND.pop(0)
    T = COMMAND.pop(0)
-   path = "/Users/liguangyao/CLI-Piano/SOUND_SOURCE/" + sound + ".wav"
+   path = os.getcwd() + "/SOUND_SOURCE/" + sound + ".wav"
    threading.Thread(target=play, args=(path,)).start()
 
 print("End of recording file. Exiting the program...")

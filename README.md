@@ -5,11 +5,8 @@ decided to record my own voice and made it into a beat-box machine.
 <br>
 
 ## How to use it
-
-In mac terminal, clone the repo and use your favorite editor to open the piano.py file. Modify line 95 and 
-line 104 to your current path of SOURCE folder. And do the same thing to line 41 in player.py
-
-Now you can run `python3 piano.py` and enjoy.
+1. clone the repo
+2. Now you can run `python3 piano.py` and enjoy.
 <br>
 
 ## Keys
