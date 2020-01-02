@@ -23,7 +23,7 @@ You can enter the recording mode by simply pressing the tab once.
 From this point, every key you press will be recorded into the record.txt file.
 Press `<esc>` to exit the program.
 
-Now run `player.py`. You should be able to play the music you just recorded by
+Now run `./player.py`. You should be able to play the music you just recorded by
 doing so.
 
 **Note:** Please do not exit the program by pressing `ctrl + C`. This might cause some
