@@ -92,7 +92,7 @@ while True:
                            tone[rec_key.key]       # check if the key pressed is valid
                            loop_count += 1
                            if loop_count > 1:         # not the first iteration
-                              interval = time.time() - start
+                              interval = time.time() - start if time.time() - start > 0.05 else 0.05
                               f.write(" " + str(interval) + "\n")
 
                            start = time.time()
